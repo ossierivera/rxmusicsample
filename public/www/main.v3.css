@@ -18,7 +18,7 @@ button:hover {
   cursor: pointer;
 }
 
-/* A senior should be aware of css architectures such as BEM */
+
 .body--themed {
   color: gold;
 }
@@ -103,7 +103,7 @@ a:hover {
   why not use css grid?
   
   Css grid could be used for this layout 
-  but it would be the wrong tool for this layout.
+  but it would be the wrong tool for this layout.*/
 
   skill is knowing when to use what.
   Pick the right tool for the job, always.
