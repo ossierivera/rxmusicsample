@@ -1,0 +1,167 @@
+l/*--- 
+
+Author: Oswaldo Rivera responsive design
+
+---*/
+
+html,
+body {
+    height: 100%;
+    position: relative;
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.5;
+    background: url(https://rxmusic.com/wp-content/themes/rxm/assets/img/texture-black-top.png);
+}
+
+.product {
+    padding: 200px 0;
+}
+
+.no-padding {
+    padding: 0;
+    margin: 0;
+}
+
+.card-img {
+    height: 540px;
+    width: 100%;
+    background: url(http://cdn.pcmedia.ca/HiResAlbumArt/004104925947654664d601f1106104104104.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.card-info {
+    min-height: 540px;
+    width: 100%;
+    background: #fff;
+}
+
+.card-text {
+    padding: 60px 50px;
+}
+
+h1 {
+    color: #333;
+    font-size: 35px;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 14px;
+    color: #959595;
+    margin: 0 0 60px;
+}
+
+p {
+    color: #959595;
+}
+
+.card-footer {
+    padding-top: 40px;
+}
+
+.card-footer p {
+    display: inline-block;
+    font-size: 35px;
+    color: #848484;
+}
+
+p span {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+button {
+    float: right;
+    height: 45px;
+    width: 145px;
+    color: #fff;
+    background: #ffb6b9;
+    border-color: transparent;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+}
+
+.fa-thumbs-o-up {
+    float: right;
+    color: #9BE02F;
+    font-size: 48px;
+    border-radius: 25px;
+    width: 56px;
+    cursor: pointer;
+    background: #fff
+}
+
+.fa-thumbs-o-down{
+    float: right;
+    color: red;
+    font-size: 48px;
+    border-radius: 25px;
+    width: 56px;
+    background: #fff;
+    cursor: pointer;
+	       
+}
+
+.fa-thumbs-o-up:hover {
+    background: #fff;
+}
+
+.fa-thumbs-o-down:hover {
+    background: #fff;
+}
+
+.fa-thumbs-up {
+    float: right;
+    color: #9BE02F;
+    font-size: 48px;
+    border-radius: 25px;
+    width: 56px;
+    background: #fff
+}
+
+.fa-thumbs-down{
+    float: right;
+    color: red;
+    font-size: 48px;
+    border-radius: 25px;
+    width: 56px;
+    background: #fff;
+	       
+}
+
+.fa-thumbs-up:hover {
+    background: #fff;
+    cursor: auto;
+}
+
+.fa-thumbs-down:hover {
+    background: #fff;
+    cursor: auto;
+}
+
+button:hover {
+    background: #cea2a3;
+}
+
+.no-hover {
+    cursor: auto;
+}
+
+
+
+.navbar {
+    position: relative;
+}
+.brand {
+    position: absolute;
+    left: 50%;
+    
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+}

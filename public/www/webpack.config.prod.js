@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 // Knowing about webpack or a similar tool and knowing how to setup
-// the config file for production is above avarage for even a senior
+// the config file for production
 module.exports = {
   entry: {
     prod: path.resolve(__dirname, "test.v3.js")

@@ -100,15 +100,11 @@ a:hover {
 }
 
 /*
-  But why not use css grid?
+  why not use css grid?
   
-  Css grid could be used for this layout to show that
-  the candidate knows it but it would be the wrong tool
-  for this layout, which makes it tricky to know
-  if the candidate is showing off or doesn't know when to
-  use what.
+  Css grid could be used for this layout 
+  but it would be the wrong tool for this layout.
 
-  Never assume that knowing what is trendy means skill,
   skill is knowing when to use what.
   Pick the right tool for the job, always.
 */

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- responsive design should include this tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RX Music - Vote App</title>
+  <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    
+    <!--[if lt IE 9]>
+     <script src="js/html5shiv.min.js"></script>
+     <script src="js/respond.min.js"></script>
+    <![endif]-->
+  
+</head>
+
+<body>
+     
+    
+  <main class="main">
+
+   <div class="navbar navbar-fixed-top navbar-default">
+   <div class="navbar-inner">
+    <div class="container">
+
+      <button type="button" style="float: left;" class="pull-left btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+    
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+    
+                </button>
+
+      <a class="brand" style="margin: 0; float: none;" href="https://rxmusic.com/">
+        <img src="https://rxmusic.com/wp-content/themes/rxm/assets/img/logo-RXMusic-black.svg" width="50" height="50"></a>
+
+
+    </div>
+   </div>
+   </div>
+    <div class="product">
+        <div class="container">
+         
+	  <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+                    <div class="card-img"></div>
+                </div>
+                
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+                    <div class="card-info">
+                        <div class="card-text">
+			    <span class='metatrackinfo' trackid=12 ></span>
+			    <h1 class='artist'>Artist</h1>
+                            <h2 class='song-title'>Title of song</h2>
+                            <p data-js='data'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                            <div class="card-footer clearfix">
+                              <p class="hash1"> <a class="hashtag1" href="https://rxmusic.com">#RXMusic </a></p><br/>
+                              <p class="hash2"> <a class="hashtag2" href="https://rxmusic.com">#goodtimes  </a> </p>
+			      <button class='fa fa-thumbs-o-down' data-toggle='tooltip' data-placement='top' title='I dislike this' ></button>
+                                <button class='fa fa-thumbs-o-up' data-toggle='tooltip' data-placement='top' title='I like this' data-js="like"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Product Card -->
+    <!-- script -->
+   
+    
+   
+   
+    
+  </main>
+   <script src="js/jquery-3.3.1.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+  <script src="bundle.v3.js"></script>
+  <script>
+  $(document).ready(function(){
+
+  get_page_video_data();
+
+  
+  
+  /* if either like or disliked are clicked remove their class
+  change their classes and then fire a timeout */
+
+  function enablebuttons (){
+     $('.fa-thumbs-o-down').attr("disabled", false);
+     $('.fa-thumbs-o-up').attr("disabled", false);
+     $('.fa-thumbs-o-up').removeClass('fa-thumbs-up');
+     $('.fa-thumbs-o-down').removeClass('fa-thumbs-down');
+  }
+  
+    $('.fa-thumbs-o-up').click (function(){
+        $(this).addClass('fa-thumbs-up');
+        var currid = $('.metatrackinfo').attr('trackid');
+        vote(currid, 1);
+        $(this).attr("disabled", true);
+        $('.fa-thumbs-o-down').attr("disabled", true);
+
+         setTimeout ( enablebuttons, 180000);
+    });
+
+     $('.fa-thumbs-o-down').click (function(){
+        $(this).addClass('fa-thumbs-down');
+        var currid = $('.metatrackinfo').attr('trackid');
+        vote(currid, -1);
+        $(this).attr("disabled", true);
+        $('.fa-thumbs-o-up').attr("disabled", true);
+
+        setTimeout (enablebuttons, 180000); 
+     });
+
+  
+
+  function vote(vid, updown){
+
+      var settings = {
+         "url": "https://a1.pcmusic.com/api/nowplaying/vote?key=9454B18C8142B16E902FE9D7FC05061C",
+         "method": "POST",
+         "timeout": 0,
+         "headers": {
+         "Content-Type": "application/json"
+         },
+         "data": "{\r\n  \"idTitle\":"+ vid + ",\r\n  \"vote\": "+updown+"\r\n}",
+      };
+
+  
+      $.ajax(settings).done(function (response) {
+           /* nothing more to be done */
+  
+      });  
+
+  }
+  
+  function get_page_video_data () {
+
+       
+        var settings = {
+            "url": "https://a1.pcmusic.com/api/nowplaying?key=9454B18C8142B16E902FE9D7FC05061C",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (response) {
+             var curr_id = $('.metatrackinfo').attr('trackid'); 
+             
+             if (response['statuscode'] == 200 ){
+               var video_id = response['data'][0]['trackid'];
+               var artist = response['data'][0]['artist'];
+               var song = response['data'][0]['song'];
+               var img = "url("+ response['data'][0]['images']['large']+")";
+
+               var hashes = response['data'][0]['twitterhashtags'];
+               var twitterurl = "https://twitter.com/hashtag/";
+               var tags = hashes.split(" ", 2);
+
+                            
+  
+                if (curr_id != video_id) {
+  
+                  $('.artist').html(artist);
+                  $('.song-title').html(song);
+  
+                  $('.card-img').css("background-image", img);  
+                  $('.metatrackinfo').attr('trackid', video_id);
+
+  
+                  var tag0 = tags[0];
+                  var tag1 = tags[1];
+                  if (tag0.endsWith(',')){
+                     tag0= tag0.slice(0,-1);
+                  }
+
+                  if (tag1.endsWith(',')){
+                      tag1 = tag1.slice(0,-1);
+                  } 
+  
+                  $('.hashtag1').html("#"+tag0);
+                  $('.hashtag1').attr('href', twitterurl+tag0+"/?src=hash");
+                 
+                  $('.hashtag2').html("#"+tag1);
+                  $('.hashtag2').attr('href', twitterurl+tag1+"/?src=hash");
+
+                  enablebuttons();
+                   
+                }
+
+             }
+  
+           
+        });
+  }   
+
+  
+  
+
+   setInterval ( function(){
+       get_page_video_data();
+   }, 5000);
+
+   
+
+
+  
+});
+  </script>
+   
+</body>
+
+</html>

@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
+const https = require('https');
+
 
 const makePath = (dir, filename) => {
   return path.resolve(__dirname, "..", "public", dir, filename);
@@ -15,37 +17,45 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static(path.resolve(__dirname, "..", "public")));
 
-app.get("/junior", (req, res) => {
-  res.render(makePath("junior", "index.ejs"));
+app.get("/", (req, res) => {
+  res.render(makePath("www", "index.v3.ejs"), { todos });
 });
 
-app.get("/junior/v1", (req, res) => {
-  res.render(makePath("junior", "index.v1.ejs"), { todos });
+app.get("/nowplaying", (req, response) => {
+    //todos.push(req.body.todo);
+    const options = {
+	'method': 'GET',
+	'hostname': 'a1.pcmusic.com',
+	'path': '/api/nowplaying?key=9454B18C8142B16E902FE9D7FC05061C',
+	'headers': {
+	}
+    };
+
+    var req = https.request(options, function (res) {
+	var chunks = [];
+
+	res.on("data", function (chunk) {
+	    chunks.push(chunk);
+	});
+
+	res.on("end", function (chunk) {
+	    var body = Buffer.concat(chunks);
+	    console.log(JSON.parse(body.toString()));
+	    response.json(JSON.parse(body.toString()));
+	    //return body.toString();
+	});
+
+	res.on("error", function (error) {
+	    console.error(error);
+	});
+    });
+
+    req.end();
+    //res.json("HELLO WORLD");
+    
 });
 
-app.get("/junior/v2", (req, res) => {
-  res.render(makePath("junior", "index.v2.ejs"), { todos });
-});
 
-app.get("/junior/v3", (req, res) => {
-  res.render(makePath("junior", "index.v3.ejs"), { todos });
-});
 
-app.get("/senior/v1", (req, res) => {
-  res.render(makePath("senior", "index.v1.ejs"), { todos });
-});
-
-app.get("/senior/v2", (req, res) => {
-  res.render(makePath("senior", "index.v2.ejs"), { todos });
-});
-
-app.get("/senior/v3", (req, res) => {
-  res.render(makePath("senior", "index.v3.ejs"), { todos });
-});
-
-app.post("/todo", (req, res) => {
-  todos.push(req.body.todo);
-  res.json(req.body);
-});
 
 module.exports = app;

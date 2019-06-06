@@ -18,8 +18,23 @@ const inputField = document.querySelector("[data-js=todo-field]");
 // if the element is not there the rest of the script will still work
 form &&
   form.addEventListener("submit", async e => {
-    e.preventDefault();
-    const res = await fetch("http://localhost:3000/todo", {
+      e.preventDefault();
+      //alert("I know that my webpack bundler works at least");
+      const res = await fetch("http://localhost:3000/nowplaying", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+      const jsondata = await res.json();
+      //const json = JSON.parse(jsondata);
+    const li = document.createElement("li");
+      alert("jsondata => " + jsondata['data']);
+      li.innerHTML = jsondata['data'][0]['artist'] +" --  "+ jsondata['data'][0]['images']['small'];
+    ul.appendChild(li);
+      
+      /*const res = await fetch("http://localhost:3000/todo", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -30,7 +45,7 @@ form &&
     const json = await res.json();
     const li = document.createElement("li");
     li.innerHTML = json.todo;
-    ul.appendChild(li);
+    ul.appendChild(li);*/
   });
 
 // if the element is not there the rest of the script will still work
