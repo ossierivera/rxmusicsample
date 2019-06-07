@@ -17,3 +17,8 @@ node server.js
 
 
 http://localhost:3000/
+
+![Screenshot 1](screenshot1.png?raw=true "Screenshot 1")
+
+
+![Screenshot 2](screenshot2.png?raw=true "Screenshot 2")
