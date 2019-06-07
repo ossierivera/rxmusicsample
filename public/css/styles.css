@@ -157,6 +157,7 @@ button:hover {
 
 .navbar {
     position: relative;
+    min-height: 70px;
 }
 .brand {
     position: absolute;
@@ -164,4 +165,9 @@ button:hover {
     
     margin-left: -50px !important;  /* 50% of your logo width */
     display: block;
+}
+
+.container {
+    padding-top: 7px;
+
 }
