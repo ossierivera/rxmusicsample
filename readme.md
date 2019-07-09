@@ -1,5 +1,5 @@
--- Notes
-- Responsive design
+-- Was done as in an interview assessment in a matter of hours; I figure I would keep it for potential employers
+- Responsive design (not fully responsive but functional)
 - did not use babel
 - strictly vanilla javascript -- if I had more time I would encapsulate the api in a node server
 - better guarding needed
