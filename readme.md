@@ -1,4 +1,7 @@
 -- Was done as in an interview assessment in a matter of hours; I figure I would keep it for potential employers
+
+Kiosk-style webb app showing current playing song and adding thumbs up/down feature. Grabbing data from custom API. 
+
 - Responsive design (not fully responsive but functional)
 - did not use babel
 - strictly vanilla javascript -- if I had more time I would encapsulate the api in a node server
